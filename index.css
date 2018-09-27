@@ -1,0 +1,557 @@
+html, body {
+  font-family: 'Work Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+.landing, .landingRow {
+  height: 100vh;
+  position: relative;
+  display: flex;
+}
+
+.overlayMenu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  z-index: 0;
+}
+
+#topHalfOverlay, #bottomHalfOverlay {
+  display: none;
+}
+
+.overlayLogo {
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.overlayUpHalf {
+  height: 60%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #303F9F;
+}
+
+.overlayBottomHalf {
+  height: 40%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: url("./resources/pha3.jpg");
+  background-position: bottom;
+  background-size: cover;
+  position: relative;
+}
+
+.bottomhalfOverlayTint {
+  height: 100%;
+  width: 100%;
+  background: #283593;
+  opacity: 0.65;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.bottomOverlayContact {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  color: white;
+}
+
+.overlayMenuText:hover {
+  cursor: pointer;
+}
+
+.overlayMenuText {
+  color: #CFD8DC;
+  display: none;
+  -webkit-transition: all 0.3s ease-in-out 0s;
+}
+
+.overlayMenuText:hover {
+  color: #B0BEC5;
+}
+
+.textContact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.flexInfo {
+  display: flex;
+  align-items: center;
+}
+
+.noMargin {
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+
+.overlayContactContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.flexInfoIcon {
+  margin-right: 7px;
+}
+
+.overlayUpHalfContainer {
+  height: 100%;
+}
+
+.overlayUpHalfMenu {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  height: 90%;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+#closeIcon {
+  width: 25px;
+}
+
+#closeIcon:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) {
+  .overlayUpHalfMenu {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .companyName {
+    font-size: 14px;
+  }
+  .noMargin {
+    font-size: 12px;
+  }
+}
+
+.coloredPortion {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #8E2DE2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#gatLogoOverlay {
+  width: 35px;
+}
+
+.topNav {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+}
+
+#hamburger, #hamburgerWhite {
+  width: 23px;
+}
+
+#hamburger:hover , #hamburgerWhite:hover {
+  cursor: pointer;
+}
+
+.imageContainer {
+  height: 100%;
+  width: 67.5%;
+  align-self: flex-end;
+}
+
+.imageAlignment {
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+  width: 100%;
+  position: relative;
+}
+
+.titleContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.insightTitle {
+  margin-top: 175px;
+  position: relative;
+  z-index: 3;
+}
+
+.bannerContain {
+  margin-top: 75px;
+  color: white;
+  position: relative;
+  z-index: 3;
+}
+
+.banner {
+  width: 30%;
+  font-weight: 300;
+}
+
+.insights, .years {
+  color: white;
+}
+
+.insights {
+  margin-bottom: 0px;
+}
+
+.years {
+  font-weight: 300;
+}
+
+.title {
+  position: absolute;
+  left: 0;
+  top: 55%;
+  color: white;
+  width: 70%;
+  font-weight: 300;
+}
+
+.slideShowImage {
+  width: 100%;
+  -webkit-box-shadow: -17px 21px 38px -16px rgba(0,0,0,0.75);
+  -moz-box-shadow: -17px 21px 38px -16px rgba(0,0,0,0.75);
+  box-shadow: -17px 21px 38px -16px rgba(0,0,0,0.75);
+}
+
+#hamburgerWhite {
+  display: none;
+}
+
+.gat {
+  font-weight: 300;
+  font-size: 21px;
+  color: white;
+  margin-left: 10px;
+  margin-top: 4px;
+}
+
+.gatContain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 575px) {
+  .topNav {
+    margin: 30px 20px 0px 20px;
+  }
+  .slideShowImage {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: calc(100% - 20px);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #hamburgerWhite {
+    display: block
+  }
+  #hamburger {
+    display: none;
+  }
+  .banner {
+    width: 100%;
+    margin-top: 175px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .imageContainer {
+    width: 100%;
+  }
+  .titleContainer {
+    left: 25px;
+    width: calc(100% - 50px);
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .insightTitle {
+    margin-top: 275px;
+  }
+  .banner {
+    margin-top: 55px;
+    font-size: 20px;
+  }
+  #gatLogoOverlay {
+    width: 30px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .insightTitle {
+    margin-top: 265px;
+  }
+  .banner {
+    margin-top: 25px;
+    font-size: 20px;
+  }
+  #hamburgerWhite {
+    width: 25px;
+  }
+  .gat {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .insightTitle {
+    margin-top: 240px;
+  }
+  .banner {
+    margin-top: 15px;
+    font-size: 20px;
+  }
+  #hamburgerWhite {
+    width: 22.5px;
+  }
+  .gat {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 767px) {
+  .insightTitle {
+    margin-top: 275px;
+  }
+
+  .banner {
+    width: 100%;
+  }
+}
+
+
+.grid__item-img {
+	display: block;
+  position: relative;
+	width: 100%;
+}
+
+.grid__item-img canvas {
+	height: 100%;
+}
+
+.grid__item-img img {
+/*	height: 100%; */
+	display: block;
+}
+
+.grid__item-img img:nth-child(2) {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+.grid__item:hover .grid__item-img img:nth-child(2) {
+	opacity: 1;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.footer {
+  height: 500px;
+  margin-top: 50px;
+  padding-top: 50px;
+  background: #8E2DE2;
+  background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);
+  background: linear-gradient(to right, #4A00E0, #8E2DE2);
+  position: relative;
+}
+
+.foothead {
+  color: white;
+  font-size: 18px;
+  font-weight: 400;
+  padding-top: 8px;
+}
+
+.footline {
+  height: 1px;
+  background-color: #B0BEC5;
+  margin-bottom: 5px;
+}
+
+.footerSection {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.paddedFootSection1 {
+  padding-right:12.5px;
+}
+
+.paddedFootSection2 {
+  padding-left: 12.5px;
+}
+
+.footerButts {
+  position: absolute;
+  height: 70px;
+}
+
+.footerWhite {
+  width: 48%;
+  bottom: 0;
+  left: 0;
+  background-color: #1E88E5;
+}
+
+.footerPurple {
+  background: #3F51B5;
+  background: -webkit-linear-gradient(to top right, #4A00E0, #3F51B5);
+  background: linear-gradient(to top right, #4A00E0, #3F51B5 );
+}
+
+
+.bottomButtText {
+  z-index: 2;
+  color: white;
+  font-size: 15px;
+}
+
+.toTopButt {
+  position: absolute;
+  bottom: 86px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toTopButt:hover {
+  cursor: pointer;
+}
+
+.footerlinks {
+  cursor: pointer;
+  margin-bottom: 0.3rem;
+  color: #CFD8DC;
+}
+
+.designedBy {
+  position: absolute;
+  bottom: 26px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#bottomBut {
+  width: 52%;
+  bottom: 0;
+  right: 0;
+}
+
+#sideBut {
+  bottom: 60px;
+  left: 0;
+  width: 50%;
+}
+
+.sectionContainer {
+  height: 100%;
+  display: flex;
+}
+
+.marginDesignText {
+  margin-left: 50px;
+}
+
+.marginArrow {
+  margin-right: 60px;
+}
+
+/* Responsive Footer follows */
+
+@media only screen and (max-width: 991px) {
+  .marginDesignText {
+    margin-left: -60px;
+  }
+  .designedBy {
+    bottom: 16px;
+  }
+  .marginArrow {
+    margin-right: -40px;
+  }
+  .footerlinks {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .marginDesignText {
+    margin-left: 0px;
+  }
+  .designedBy {
+    bottom: 26px;
+  }
+  .marginArrow {
+    margin-right: 0px;
+  }
+  .sectionContainer {
+    flex-direction: column;
+    height: auto;
+  }
+  #sideBut {
+    width: 100%;
+  }
+  #bottomBut {
+    width: 100%;
+  }
+  .paddedFootSection1 {
+    margin-top: 20px;
+    padding: 0px;
+  }
+  .paddedFootSection2 {
+    padding: 0px;
+  }
+}
+
+@media only screen and (max-width: 545px) {
+  #canvas {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
