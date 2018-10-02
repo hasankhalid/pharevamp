@@ -698,3 +698,16 @@ html, body {
   background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   height: 300px;
 }
+
+
+.x.axis path,line{
+  stroke: none;
+}
+
+.y.axis path,line{
+  stroke-width: .4;
+}
+
+.axis text{
+  font-family: 'Montserrat', sans-serif;
+}
