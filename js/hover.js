@@ -194,9 +194,8 @@ var hoverEffect = function(opts) {
     };
 
     var animate = function() {
-        requestAnimationFrame(animate);
-
         renderer.render(scene, camera);
+        requestAnimationFrame(animate);
     };
     animate();
 };

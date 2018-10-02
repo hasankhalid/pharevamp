@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Insights and Trends | PHA</title>
+    <title>Park Conditions | PHA</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500" rel="stylesheet">
@@ -13,7 +13,7 @@
     <script src="./GLSlideshow.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="index.css">
-    <link rel="stylesheet" type="text/css" href="animate.css">
+    <link rel="stylesheet" type="text/css" href="./animate.css">
     <link rel="icon" href="./resources/favicon.ico" type="image/x-icon" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
@@ -23,7 +23,6 @@
   </head>
 
   <body>
-    <div class="landing">
       <div class="overlayMenu">
         <div class="overlayUpHalf" id="topHalfOverlay">
           <div class="container overlayUpHalfContainer">
@@ -64,8 +63,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 coloredPortion">
-      </div>
+    <div class="containNavTitle">
       <div class="container">
         <div class="row landingRow">
           <div class="topNav">
@@ -73,103 +71,13 @@
               <img id="gatLogoOverlay" src="./resources/gat2.svg"></img>
               <span class="gat">GAT CONSULTING</span>
             </div>
-            <img id="hamburger" src="./resources/menu.svg"></img>
-            <img id="hamburgerWhite" src="./resources/menuWhite.svg"></img>
-          </div>
-          <div class="imageAlignment">
-            <div class="titleContainer">
-              <div class="insightTitle">
-                <p class="insights">PHA M&E INSIGHTS</p>
-                <p class="years">2017-2018</p>
-              </div>
-              <div class="bannerContain">
-                <h2 class="banner">A visual exploration of trends and results</h2>
-              </div>
-            </div>
-             <div class="imageContainer">
-            <!--  <img class="slideShowImage" src="./resources/pha.jpg"></img> -->
-              <div class="grid__item-img" data-displacement="resources/1.jpg" data-intensity="0.5" data-speedIn="1.0" data-speedOut="1.2">
-                <img class="slideShowImage" src="./resources/pha.jpg" alt="Image"></img>
-                <img class="slideShowImage" src="./resources/pha2.jpg" id="getHeight" alt="Image Alt"></img>
-              </div>
-            </div>
+            <img id="hamburgerWhiteRest" src="./resources/menuWhite.svg"></img>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="secondPage">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <h3>Project Background</h3>
-            <p class="lato">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div>
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 exploredata">
-            <h3 class="attendanceSec">Explore Attendance</h3>
-            <div class="attendanceInputs">
-              <div class="dropdown">
-                <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Zone
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="#">Zone I</a>
-                  <a class="dropdown-item" href="#">Zone II</a>
-                  <a class="dropdown-item" href="#">Zone III</a>
-                  <a class="dropdown-item" href="#">Zone IV</a>
-                  <a class="dropdown-item" href="#">Zone V</a>
-                  <a class="dropdown-item" href="#">Zone VI</a>
-                  <a class="dropdown-item" href="#">Zone VII</a>
-                  <a class="dropdown-item" href="#">Zone VIII</a>
-                  <a class="dropdown-item" href="#">Zone IX</a>
-                  <a class="dropdown-item" href="#">Zone X</a>
-                  <a class="dropdown-item" href="#">Zone XI</a>
-                </div>
-              </div>
-              <div class="datePickers">
-                <div>
-                  <p class="dateHeaders lato">Start Date</p>
-                  <input id="startdate" />
-                </div>
-                <div>
-                  <p class="dateHeaders lato">End Date</p>
-                  <input id="enddate" />
-                </div>
-              </div>
-            </div>
-            <div class="monthDisclaimContain">
-              <p id="monthDisclaim" class="lato disclaimerMonthWindow">DATE RESET. Please select a window with minimum four months between the dates</p>
-            </div>
-            <div class="vizContain">
-            </div>
-          </div>
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 exploredata">
-            <h3>Explore PHA Data</h3>
-          </div>
-          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-            <div id="imgNav1" class="imageNav">
-              <img src="./resources/pha3.jpg"></img>
-              <div class="colorOverlay"></div>
-              <p class="titleOverlay">Park Conditions</p>
-            </div>
-          </div>
-          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-            <div id="imgNav2" class="imageNav">
-              <img src="./resources/pha4.jpg"></img>
-              <div class="colorOverlay"></div>
-              <p class="titleOverlay">Enumerator Performance</p>
-            </div>
-          </div>
-          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-            <div id="imgNav3" class="imageNav">
-              <img src="./resources/pha5.jpg"></img>
-              <div class="colorOverlay"></div>
-              <p class="titleOverlay">Maali KPI</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <script src="./index.js"></script>
 
    <footer class="footer">
      <div class="container" style="position: relative; height: 100%;">
@@ -202,40 +110,6 @@
     <div id="sideBut" class="footerPurple footerButts"></div>
     <div id="bottomBut" class="footerPurple footerButts"></div>
    </footer>
-
-   <script src="./index.js"></script>
-
-
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="js/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
-    <script src="js/hover.js"></script>
-
-    <script>
-
-      function createGLEffect() {
-        imagesLoaded( document.querySelectorAll('img'), () => {
-          document.body.classList.remove('loading');
-        });
-
-        Array.from(document.querySelectorAll('.grid__item-img')).forEach((el) => {
-          const imgs = Array.from(el.querySelectorAll('img'));
-          console.log(imgs);
-          new hoverEffect({
-            parent: el,
-            intensity: el.dataset.intensity || undefined,
-            speedIn: el.dataset.speedin || undefined,
-            speedOut: el.dataset.speedout || undefined,
-            easing: el.dataset.easing || undefined,
-            hover: el.dataset.hover || undefined,
-            image1: imgs[0].getAttribute('src'),
-            image2: imgs[1].getAttribute('src'),
-            displacementImage: el.dataset.displacement
-          });
-        });
-      }
-      createGLEffect();
-    </script>
 
   </body>
 </html>
