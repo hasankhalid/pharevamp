@@ -66,16 +66,24 @@ var hoverEffect = function(opts) {
     };
 
     var scene = new THREE.Scene();
-    var camera = new THREE.OrthographicCamera(
-        parent.offsetWidth / -2,
-        parent.offsetWidth / 2,
-        parent.offsetHeight / 2,
-        parent.offsetHeight / -2,
-        1,
-        1000
-    );
 
-    camera.position.z = 1;
+    var camera;
+
+    var initialiseCam = function () {
+        camera = new THREE.OrthographicCamera(
+          parent.offsetWidth / -2,
+          parent.offsetWidth / 2,
+          parent.offsetHeight / 2,
+          parent.offsetHeight / -2,
+          1,
+          1000
+      );
+
+      camera.position.z = 1;
+    }
+
+    initialiseCam();
+    console.log(camera);
 
     var renderer = new THREE.WebGLRenderer({
         antialias: false,
@@ -102,42 +110,48 @@ var hoverEffect = function(opts) {
     //     renderer.setTexture2D(t, 0);
     // };
 
-    var loader = new THREE.TextureLoader();
-    loader.crossOrigin = "";
-    var texture1 = loader.load(image1);
-    var texture2 = loader.load(image2);
+    var loader, texture1, texture2, disp, mat, geometry, object;
 
-    var disp = loader.load(dispImage);
-    disp.wrapS = disp.wrapT = THREE.RepeatWrapping;
+    var createTexture = function() {
+      loader = new THREE.TextureLoader();
+      loader.crossOrigin = "";
+      texture1 = loader.load(image1);
+      texture2 = loader.load(image2);
 
-    texture1.magFilter = texture2.magFilter = THREE.LinearFilter;
-    texture1.minFilter = texture2.minFilter = THREE.LinearFilter;
+      disp = loader.load(dispImage);
+      disp.wrapS = disp.wrapT = THREE.RepeatWrapping;
 
-    texture1.anisotropy = renderer.getMaxAnisotropy();
-    texture2.anisotropy = renderer.getMaxAnisotropy();
+      texture1.magFilter = texture2.magFilter = THREE.LinearFilter;
+      texture1.minFilter = texture2.minFilter = THREE.LinearFilter;
 
-    var mat = new THREE.ShaderMaterial({
-        uniforms: {
-            effectFactor: { type: "f", value: intensity },
-            dispFactor: { type: "f", value: 0.0 },
-            texture: { type: "t", value: texture1 },
-            texture2: { type: "t", value: texture2 },
-            disp: { type: "t", value: disp }
-        },
+      texture1.anisotropy = renderer.getMaxAnisotropy();
+      texture2.anisotropy = renderer.getMaxAnisotropy();
 
-        vertexShader: vertex,
-        fragmentShader: fragment,
-        transparent: true,
-        opacity: 1.0
-    });
+      mat = new THREE.ShaderMaterial({
+          uniforms: {
+              effectFactor: { type: "f", value: intensity },
+              dispFactor: { type: "f", value: 0.0 },
+              texture: { type: "t", value: texture1 },
+              texture2: { type: "t", value: texture2 },
+              disp: { type: "t", value: disp }
+          },
 
-    var geometry = new THREE.PlaneBufferGeometry(
-        parent.offsetWidth,
-        parent.offsetHeight,
-        1
-    );
-    var object = new THREE.Mesh(geometry, mat);
-    scene.add(object);
+          vertexShader: vertex,
+          fragmentShader: fragment,
+          transparent: true,
+          opacity: 1.0
+      });
+
+      geometry = new THREE.PlaneBufferGeometry(
+          parent.offsetWidth,
+          parent.offsetHeight,
+          1
+      );
+      object = new THREE.Mesh(geometry, mat);
+      scene.add(object);
+    }
+
+    createTexture();
 
     var addEvents = function(){
         var evtIn = "mouseenter";
@@ -194,8 +208,8 @@ var hoverEffect = function(opts) {
     };
 
     var animate = function() {
-        renderer.render(scene, camera);
         requestAnimationFrame(animate);
+        renderer.render(scene, camera);
     };
     animate();
 };
