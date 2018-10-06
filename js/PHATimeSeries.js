@@ -150,14 +150,16 @@
       ySurvey.domain([0, max_srveys])
 
 
+      console.log(svg_width, svg_height);
+
       // starting to append elements within the html
-      var svg = d3.select('body').select('div.linechart-contain')
+      var svg = d3.select('.linechart-contain')
                   .append('svg')
                   .classed('lineChartSVG', true)
-                  //.attr("preserveAspectRatio", "xMinYMin meet")
-                  //.attr("viewBox", "0 0 600 300")
-                  .attr("width", svg_width)
-                  .attr("height", svg_height);
+                  .attr("preserveAspectRatio", "xMinYMin meet")
+                  .attr("viewBox", "0 0 " + svg_width + " " + svg_height);
+                  //.attr("width", svg_width)
+                  //.attr("height", svg_height);
 
       // defining the group that contains the chart
       var chart_g = svg.append('g')
@@ -255,10 +257,10 @@
                       .select('div.areachart-contain')
                       .append('svg')
                       .classed('areaChartSVG', true)
-                      //.attr("preserveAspectRatio", "xMinYMin meet")
-                      //.attr("viewBox", "0 0 600 300")
-                      .attr("width", svg_width)
-                      .attr("height", svg_height);
+                      .attr("preserveAspectRatio", "xMinYMin meet")
+                      .attr("viewBox", "0 0 " + svg_width + " " + svg_height)
+                      //.attr("width", svg_width)
+                      //.attr("height", svg_height);
 
       // defining the group that contains the area chart
       var chart_gArea = svgArea.append('g')
@@ -536,6 +538,8 @@
       var class_name = d3.select(this).attr("class").replace(" voronoiPath", "");
       console.log(class_name);
 
+      var datum = d3.select(".timeSCirc." + class_name).data()[0];
+
       d3.select(".timeSCirc." + class_name)
         // .transition()
         // .duration(50)
@@ -546,6 +550,63 @@
       d3.select("rect." + class_name)
         .attr('fill', "#448AFF")
         .style('opacity', 0.8);
+
+
+      d3.select('body').append('div')
+        .classed('animated', true)
+        .classed('fadeInOpac', true)
+        .classed('tool', true)
+        .attr('id', 'hoverbox')
+      // tooltip selection
+      var tooltip = d3.select('.tool');
+
+      tooltip.append('div')
+      .classed('toolhead', true)
+      .append('div')
+      .classed('toolheadData', true)
+      .html(function(){
+        return '<p class="datePara"><span class="dateHead">Date: </span><span class="lato">' + datum.Date + '</span></p><span class="dateHead">Valid Surveys: </span><span class="lato">' + datum.validSurveys + '</span>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+      })
+
+      d3.select('.toolhead')
+      .append('div')
+      .classed('toolheadIcon', true)
+      .html(function(){
+        return '<i class="fas fa-tree"></i>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+      })
+
+      tooltip.append('div')
+      .classed('sectionHead', true)
+      .html(function(){
+        return '<div class="sectionHeadingContain"><p class="sectionHeading">Attendance</p><i class="fas fa-map-marker-alt"></i></div><div class="separator"></div>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+      })
+
+      tooltip.append('div')
+      .classed('attendanceValue', true)
+      .html(function(){
+        return '<div class="attendanceValues lato" id="present"><span class="attendanceHead">Present: </span><span>' + datum.presentPercent.toPrecision(4) + ' %</span></div><div class="attendanceValues lato" id="absent"><span class="attendanceHead">Absent: </span><span>' + datum.absentPercent.toPrecision(4) + ' %</span></div>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+      })
+
+      tooltip.append('div')
+      .classed('sectionHead', true)
+      .html(function(){
+        return '<div class="sectionHeadingContain"><p class="sectionHeading">Commute</p><i class="fas fa-motorcycle"></i></div><div class="separator"></div>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+      })
+
+      tooltip.append('div')
+      .classed('attendanceValue', true)
+      .html(function(d){
+        return '<div class="attendanceValues lato" id="dormant"><span class="attendanceHead">Dormant: </span><span>' + datum.dormantPercent.toPrecision(4) + ' %</span></div><div class="attendanceValues lato" id="absent"><span class="attendanceHead">Leave: </span><span>' + datum.leavePercent.toPrecision(4) + ' %</span></div><div class="attendanceValues lato" id="otherShift"><span class="attendanceHead">Other Shifts: </span><span>' + datum.otherShiftsPercent.toPrecision(4) + ' %</span></div><div class="attendanceValues lato" id="other"><span class="attendanceHead">Other: </span><span>' + datum.otherPercent.toPrecision(4) + '%</span></div>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+      })
+
+
+      tooltip.style('top', d3.event.pageY - document.getElementById('hoverbox').getBoundingClientRect().height/2 + "px");
+      if (d3.event.pageX < window.innerWidth/2) {
+        tooltip.style('left', d3.event.pageX + 14 + "px");
+      }
+      else {
+        tooltip.style('left', d3.event.pageX - 260 + "px");
+      }
     })
 
     d3.selectAll(".voronoiPath").on("mouseout", function(d, i){
@@ -563,5 +624,6 @@
         .style('opacity', 0.10);
 
       d3.select(".timeSCirc.T" + class_name).select("title").remove();
+      d3.selectAll('.tool').remove()
     })
   }

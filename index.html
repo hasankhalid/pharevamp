@@ -14,11 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" type="text/css" href="animate.css">
+    <link rel="stylesheet" type="text/css" href="./datepicker/datepicker.css">
+
     <link rel="icon" href="./resources/favicon.ico" type="image/x-icon" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js" type="text/javascript"></script>
 
   </head>
 
@@ -35,12 +34,12 @@
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 overlayUpHalfMenu" id="overlayUpperHalfMenu">
               <p id="overlay1" class="overlayMenuText home">Attendance</p>
-              <p id="overlay2" class="overlayMenuText">Enumerator Performance</p>
-              <p id="overlay3" class="overlayMenuText">Maali</p>
+              <p id="overlay2" class="overlayMenuText enum">Enumerator Performance</p>
+              <p id="overlay3" class="overlayMenuText maali">Maali</p>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 overlayUpHalfMenu" id="overlayBelowHalfMenu">
               <p id="overlay4" class="overlayMenuText conditions">Park Conditions</p>
-              <p id="overlay5" class="overlayMenuText">About</p>
+              <p id="overlay5" class="overlayMenuText about">About</p>
             </div>
           </div>
         </div>
@@ -69,7 +68,7 @@
       <div class="container">
         <div class="row landingRow">
           <div class="topNav">
-            <div class="gatContain">
+            <div class="gatContain home">
               <img id="gatLogoOverlay" src="./resources/gat2.svg"></img>
               <span class="gat">GAT CONSULTING</span>
             </div>
@@ -108,39 +107,53 @@
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 exploredata">
             <h3 class="attendanceSec">Explore Attendance</h3>
             <div class="attendanceInputs">
-              <div class="dropdown">
-                <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Zone
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="#">Zone I</a>
-                  <a class="dropdown-item" href="#">Zone II</a>
-                  <a class="dropdown-item" href="#">Zone III</a>
-                  <a class="dropdown-item" href="#">Zone IV</a>
-                  <a class="dropdown-item" href="#">Zone V</a>
-                  <a class="dropdown-item" href="#">Zone VI</a>
-                  <a class="dropdown-item" href="#">Zone VII</a>
-                  <a class="dropdown-item" href="#">Zone VIII</a>
-                  <a class="dropdown-item" href="#">Zone IX</a>
-                  <a class="dropdown-item" href="#">Zone X</a>
-                  <a class="dropdown-item" href="#">Zone XI</a>
+              <div class="dropdownZone">
+                <p class="selectedZone" id="select">Zone I selected</p>
+                <div class="dropdown">
+                  <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Zone
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" value="I">Zone I</a>
+                    <a class="dropdown-item" value="II">Zone II</a>
+                    <a class="dropdown-item" value="III">Zone III</a>
+                    <a class="dropdown-item" value="IV">Zone IV</a>
+                    <a class="dropdown-item" value="V">Zone V</a>
+                    <a class="dropdown-item" value="VI">Zone VI</a>
+                    <a class="dropdown-item" value="VII">Zone VII</a>
+                    <a class="dropdown-item" value-"ENGINEERING DIRECTORATE">Engineering Directorate</a>
+                    <a class="dropdown-item" value="GORs">GORs</a>
+                    <a class="dropdown-item" value="GIP">GIP</a>
+                    <a class="dropdown-item" value="JillaniPark">Jillani Park</a>
+                    <a class="dropdown-item" value="PD FEROZPUR ROAD">Ferozepur Road</a>
+                    <a class="dropdown-item" value="PD MALL RD AND FEROZPUR RD">Mall Road</a>
+                    <a class="dropdown-item" value="PD Ring Road">Ring Road</a>
+                    <a class="dropdown-item" value="PDLBC">PDLBC</a>
+                    <a class="dropdown-item" value="Project Gulshan-e-Iqbal Park">Gulshan-e-Iqbal Park</a>
+                    <a class="dropdown-item" value="PHA Office Staff">PHA Office Staff</a>
+                  </div>
                 </div>
               </div>
               <div class="datePickers">
                 <div>
-                  <p class="dateHeaders lato">Start Date</p>
-                  <input id="startdate" />
+                  <p class="dateHeaders lato">Start Date<img style="width: 13px; margin-left: 5px" class="reset" id="start" src="./resources/undo-arrow.svg"></img></p>
+                  <input id="startdate" data-toggle="datepicker"/>
                 </div>
                 <div>
-                  <p class="dateHeaders lato">End Date</p>
-                  <input id="enddate" />
+                  <p class="dateHeaders lato">End Date<img style="width: 13px; margin-left: 5px" class="reset" id="end" src="./resources/undo-arrow.svg"></img></p>
+                  <input id="enddate" data-toggle="datepicker"/>
                 </div>
+                <div id="dtBox"></div>
               </div>
             </div>
             <div class="monthDisclaimContain">
-              <p id="monthDisclaim" class="lato disclaimerMonthWindow">DATE RESET. Please select a window with minimum four months between the dates</p>
+              <p id="monthDisclaim" class="lato disclaimerMonthWindow">Note: The minimum date range is 4 months</p>
             </div>
             <div class="vizContain">
+              <div class="linechart-contain">
+              </div>
+              <div class="areachart-contain">
+              </div>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 exploredata">
@@ -189,10 +202,10 @@
            <h4 class="foothead">Navigation</h4>
            <div class="footline"></div>
            <p class="footerlinks home">Attendance</p>
-           <p class="footerlinks">Enumerator Performance</p>
+           <p class="footerlinks enum">Enumerator Performance</p>
            <p class="footerlinks conditions">Park Conditions</p>
-           <p class="footerlinks">Maali</p>
-           <p class="footerlinks">About</p>
+           <p class="footerlinks maali">Maali</p>
+           <p class="footerlinks about">About</p>
          </div>
        </div>
        <div class="toTopButt bottomButtText col-sm-12 col-md-4 col-lg-6 col-xl-6"><p style="margin-bottom: 0px;">To top</p> <i class="far fa-arrow-alt-circle-up marginArrow" style="font-size: 26px;"></i></div>
@@ -203,15 +216,99 @@
     <div id="bottomBut" class="footerPurple footerButts"></div>
    </footer>
 
-   <script src="./index.js"></script>
+    <script src="./datepicker/datepicker.js"></script>
 
+    <script src="./index.js"></script>
 
+    <script src="js/pha_data.js"></script>
+    <script src="js/PHATimeSeries.js"></script>
     <script src="js/imagesloaded.pkgd.min.js"></script>
     <script src="js/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
     <script src="js/hover.js"></script>
 
+
     <script>
+
+      $.fn.datepicker.setDefaults({
+        format: 'dd-mm-yy',
+        monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        autoHide: true
+      });
+      $('[data-toggle="datepicker"]').datepicker();
+
+      var startDate = '01-Jun-17';
+      var endDate = "31-Aug-18";
+      var phaZone = "I";
+
+      makeChart(phaMasterData, phaZone, [startDate, endDate]);
+
+      $('#startdate').datepicker('setDate', '01-06-17');
+      $('#enddate').datepicker('setDate', '31-08-18');
+
+      $('#startdate').datepicker('setStartDate', '01-06-17');
+      $('#startdate').datepicker('setEndDate', '31-04-18');
+      $('#enddate').datepicker('setStartDate', '01-10-17');
+      $('#enddate').datepicker('setEndDate', '31-08-18');
+
+      $('#startdate').on('pick.datepicker', function (e) {
+        var date = $('#startdate').datepicker('getDate', true);
+        var split = date.split('-');
+        var monthname = $("#startdate").datepicker('getMonthName', true);
+        split[1] = monthname;
+        startDate = split[0] + "-" + split[1] + "-" + split[2];
+
+        var newEndStartDate = new Date(startDate);
+        newEndStartDate.setMonth(newEndStartDate.getMonth()+4);
+        newEndStartDate = newEndStartDate.getDate().toString() + "-" + (newEndStartDate.getMonth() + 1).toString().padStart(2, '0') + "-" + (newEndStartDate.getFullYear() % 100).toString();
+        $('#enddate').datepicker('setStartDate', newEndStartDate);
+
+        makeChart(phaMasterData, phaZone, [startDate, endDate]);
+      });
+
+      $('#enddate').on('pick.datepicker', function (e) {
+        var date = $('#enddate').datepicker('getDate', true);
+        var split = date.split('-');
+        var monthname = $("#enddate").datepicker('getMonthName', true);
+        split[1] = monthname;
+        endDate = split[0] + "-" + split[1] + "-" + split[2];
+
+        var newStartEndDate = new Date(endDate);
+        newStartEndDate.setMonth(newStartEndDate.getMonth()-4);
+        newStartEndDate = newStartEndDate.getDate().toString() + "-" + (newStartEndDate.getMonth() + 1).toString().padStart(2, '0') + "-" + (newStartEndDate.getFullYear() % 100).toString();
+        $('#startdate').datepicker('setEndDate', newStartEndDate);
+
+        makeChart(phaMasterData, phaZone, [startDate, endDate]);
+      });
+
+
+
+      $('.dropdown-item').click(function() {
+        var value = $(this).text();
+        var phaVal = $(this).attr("value");
+        $('#select').text(value + ' selected');
+        var phaZone = phaVal;
+        makeChart(phaMasterData, phaZone, [startDate, endDate]);
+      });
+
+
+
+      $('.reset').click(function() {
+        var id = $(this).attr("id");
+        if (id === "end") {
+          $('#enddate').datepicker('setDate', '31-08-18');
+          $('#startdate').datepicker('setEndDate', '31-04-18');
+        }
+        else if (id === "start") {
+          $('#startdate').datepicker('setDate', '01-06-17');
+          $('#enddate').datepicker('setStartDate', '01-10-17');
+        }
+      });
+
+
+    /*  $(window).on('load', function() {
+        makeChart();
+      }); */
 
       function createGLEffect() {
         imagesLoaded( document.querySelectorAll('img'), () => {

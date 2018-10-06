@@ -20,7 +20,7 @@ html, body {
   height: 100vh;
   width: 100%;
   opacity: 1;
-  z-index: 0;
+  z-index: -1;
 }
 
 #topHalfOverlay, #bottomHalfOverlay {
@@ -293,6 +293,58 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  font-size: 12px;
+  border-radius: 12px;
+  background-color: #FAFAFA;
+}
+
+#startdate {
+  margin-right: 5px;
+  cursor: pointer;
+  background: url(resources/calendar.png) no-repeat scroll 9px 1px;
+  padding-left: 40px;
+}
+
+#enddate {
+  margin-left: 5px;
+  cursor: pointer;
+  background: url(resources/calendar.png) no-repeat scroll 9px 1px;
+  padding-left: 40px;
+}
+
+.reset {
+  cursor: pointer;
+}
+
+#startdate, #enddate {
+  border: 1px solid;
+  padding-top: 3px;
+  border-color: #e0e0e0;
+  border-radius: 10px;
+}
+
+.dropdownZone {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.selectedZone {
+  margin-bottom: 0.2rem;
+  font-size: 12px;
+}
+
+.dropdown-item {
+  transition: all 0.2s ease-in-out;
+}
+
+.dropdown-item:hover {
+  background-color: #eee;
 }
 
 @media only screen and (max-width: 575px) {
@@ -316,6 +368,10 @@ html, body {
   .banner {
     width: 100%;
     margin-top: 175px;
+  }
+
+  #startdate, #enddate {
+    width: 100%;
   }
 }
 
@@ -389,7 +445,7 @@ html, body {
 	display: block;
   position: relative;
 	width: 100%;
-  max-height: 400px;
+  min-height: 200px;
 }
 
 .grid__item-img canvas {
@@ -669,11 +725,9 @@ html, body {
 
 .disclaimerMonthWindow {
   text-align: right;
-  color: red;
+  color: #1E88E5;
   font-size: 14px;
-  text-decoration: underline;
-  display: none;
-  margin: 0px;
+  margin: 10px 0px;
 }
 
 .monthDisclaimContain {
@@ -711,4 +765,130 @@ html, body {
 
 .axis text{
   font-family: 'Montserrat', sans-serif;
+}
+
+@media only screen and (max-width: 767px) {
+  .axis text{
+    font-size: 14px;
+  }
+}
+
+.tool {
+  position: absolute;
+  background: white;
+  color: #212121;
+  z-index: 1000;
+  border-radius: 10px;
+  width: 235px;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2);
+          box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2);
+}
+
+.datePara {
+  margin-bottom: 2px;
+}
+
+.dateHead {
+  font-weight: 400;
+}
+
+.toolhead {
+  padding: 18px 15px 10px 15px;
+  font-size: 14px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: white;
+  display: flex;
+  background: #8E2DE2;
+  background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);
+  background: linear-gradient(to right, #4A00E0, #8E2DE2);
+}
+
+.toolhead, .sectionHead {
+  width: 100%;
+}
+
+.toolheadData {
+  width: 85%;
+}
+
+.toolheadIcon {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.fa-tree {
+  font-size: 25px;
+}
+
+.sectionHead {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.separator {
+  background-color: #BDBDBD;
+  height: 1px;
+  width: 100%;
+  margin-bottom: 3px;
+}
+
+.sectionHead, .attendanceValue {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.sectionHeading {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.attendanceValues {
+  font-size: 13px;
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#present {
+  color: #1565C0;
+}
+
+#absent {
+  color: #C62828;
+}
+
+#otherShift {
+  color: #2E7D32;
+}
+
+#other {
+  color: #512DA8;
+  margin-bottom: 15px;
+}
+
+#dormant {
+  color: #9E9D24;
+}
+
+.sectionHeadingContain {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.attendanceHead {
+  font-weight: 500;
+}
+
+.pageHeading {
+  color: white;
+  text-align: center;
+  margin-top: 100px;
+  width: 100%;
 }

@@ -1322,6 +1322,32 @@
   }
 }
 
+@-webkit-keyframes fadeInOpac {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.75;
+  }
+}
+
+@keyframes fadeInOpac {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.75;
+  }
+}
+
+.fadeInOpac {
+  -webkit-animation-name: fadeInOpac;
+  animation-name: fadeInOpac;
+}
+
+
 .fadeIn {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;

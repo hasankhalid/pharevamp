@@ -3,65 +3,24 @@
     var isWhiteIcon;
     var isWhiteIconRest;
 
-    $('#startdate').datepicker({
-      value: '01-Jun-17',
-      minDate: '01-Jun-17',
-      maxDate: '31-Aug-18',
-      format: 'dd-mmm-yy',
-      close: function (e, type) {
-        var a = new Date(this.value);
-        var b = new Date($('#enddate').val());
-        var min = new Date('01-Jun-17');
-        var max = new Date('31-Aug-18');
-        var timeDiff = Math.abs(b - a);
-        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-        if (diffDays < 120) {
-          this.value = '01-Jun-17';
-          $('#monthDisclaim').show().addClass('animated fadeIn');
-          $('#monthDisclaim').on("animationend", function(){
-            setTimeout(function () {
-              $('#monthDisclaim').removeClass('animated fadeIn');}, 150
-            );
-            setTimeout(function () {
-              $('#monthDisclaim').hide();}, 1200
-            );
-          });
-        }
-      }
-    });
-    $('#enddate').datepicker({
-      value: '31-Aug-18',
-      minDate: '01-Jun-17',
-      maxDate: '31-Aug-18',
-      format: 'dd-mmm-yy',
-      close: function (e, type) {
-        var a = new Date(this.value);
-        var b = new Date($('#enddate').val());
-        var min = new Date('01-Jun-17');
-        var max = new Date('31-Aug-18');
-        var timeDiff = Math.abs(b - a);
-        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-        if (diffDays < 120) {
-          this.value = '31-Aug-18';
-          $('#monthDisclaim').show().addClass('animated fadeIn');
-          $('#monthDisclaim').on("animationend", function(){
-            setTimeout(function () {
-              $('#monthDisclaim').removeClass('animated fadeIn');}, 150
-            );
-            setTimeout(function () {
-              $('#monthDisclaim').hide();}, 1200
-            );
-          });
-        }
-      }
-    });
-
     $(".conditions").click(function() {
       window.location = './conditions.html';
     });
 
     $(".home").click(function() {
       window.location = './index.html';
+    });
+
+    $(".maali").click(function() {
+      window.location = './kpi.html';
+    });
+
+    $(".enum").click(function() {
+      window.location = './enumerator.html';
+    });
+
+    $(".about").click(function() {
+      window.location = './aboutPHA.html';
     });
 
     $('#startdate').attr('readonly', true);
@@ -190,6 +149,6 @@
        );
 
        setTimeout(function () {
-         $('.overlayMenu').css("z-index", "0");}, 950
+         $('.overlayMenu').css("z-index", "-1");}, 950
        );
      });
