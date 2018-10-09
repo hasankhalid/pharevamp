@@ -917,3 +917,33 @@ html, body {
   stroke: #ffff33;
   stroke-width: 2;
 }
+
+
+/* style for parkCon*/
+.axis.parkCon path,line{
+  stroke: none;
+}
+
+.axis.parkCon text{
+  font-family: 'Montserrat', sans-serif;
+  text-anchor: start;
+}
+.y.axis.parkCon text{
+  font-size: 12px;
+}
+.y.axis.grid.parkCon line{
+  stroke: grey;
+  stroke-width: 0.3px;
+  stroke-opacity: 0.4;
+}
+
+.legendSize.parkCon text{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+}
+
+.legendSize.parkCon circle{
+  fill: none;
+  stroke: black;
+  stroke-width: 0.3px;
+}
