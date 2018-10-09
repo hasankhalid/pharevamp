@@ -530,7 +530,6 @@ html, body {
   background: linear-gradient(to top right, #4A00E0, #3F51B5 );
 }
 
-
 .bottomButtText {
   z-index: 2;
   color: white;
@@ -659,6 +658,7 @@ html, body {
   width: 100%;
   position: relative;
   margin-top: 15px;
+  cursor: pointer;
 }
 
 .imageNav > img {
@@ -693,7 +693,7 @@ html, body {
   cursor: pointer;
 }
 
-.attendanceInputs {
+.attendanceInputs, .enumInputs {
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
@@ -704,12 +704,22 @@ html, body {
   align-items: flex-end;
 }
 
-#dropdownMenuLink {
+.dropdownMenuLinks {
   width: 125px;
   border-radius: 25px;
   background: #7CB342;
-  color: white;
+  color: white !important;
   border-color: #7CB342;
+  transition: all 0.5s ease-in-out;
+}
+
+.dropdownMenuLinks:hover {
+  background-color: #689F38;
+  border-color: #689F38;
+}
+
+#dropdownMenuLinkEnum {
+  width: 150px;
 }
 
 .gj-datepicker {
@@ -739,7 +749,7 @@ html, body {
     flex-direction: column;
     align-items: center;
   }
-  #dropdownMenuLink {
+  .dropdownMenuLinks {
     margin-bottom: 20px;
   }
   .disclaimerMonthWindow {
@@ -770,6 +780,13 @@ html, body {
 @media only screen and (max-width: 767px) {
   .axis text{
     font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 565px) {
+  .enumInputs {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -896,10 +913,10 @@ html, body {
 /* style for calander*/
 
 #calendar {
-  margin: 20px;
+  margin-top: 30px;
 }
 #calendar_with_zones {
-  margin: 20px;
+  margin-top: 30px;
 }
 .month {
   margin-right: 8px;

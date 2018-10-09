@@ -78,7 +78,6 @@ function drawCalendar(dateData, parentSelection, type){
 
   var rect = svg.selectAll("rect.day")
     .data(function(d, i) {
-      console.log(d3.timeDays(d, new Date(d.getFullYear(), d.getMonth()+1, 1)));
       return d3.timeDays(d, new Date(d.getFullYear(), d.getMonth()+1, 1));
     })
     .enter().append("rect")
