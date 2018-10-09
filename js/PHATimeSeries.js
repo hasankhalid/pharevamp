@@ -590,7 +590,7 @@
       tooltip.append('div')
       .classed('sectionHead', true)
       .html(function(){
-        return '<div class="sectionHeadingContain"><p class="sectionHeading">Commute</p><i class="fas fa-motorcycle"></i></div><div class="separator"></div>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+        return '<div class="sectionHeadingContain"><p class="sectionHeading">Comments</p><i class="fas fa-comments"></i></div><div class="separator"></div>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
       })
 
       tooltip.append('div')

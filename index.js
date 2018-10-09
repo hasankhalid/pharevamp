@@ -67,9 +67,6 @@
            setTimeout(function () {
              $('#overlay5').show().addClass('animated fadeInUp');}, 150
            );
-           setTimeout(function () {
-             $('#overlay3').show().addClass('animated fadeInDown');}, 200
-           );
           }
           else if ((isWhiteIcon === true)) {
             setTimeout(function () {
@@ -77,9 +74,6 @@
             );
             setTimeout(function () {
               $('#overlay2').show().addClass('animated fadeIn');}, 50
-            );
-            setTimeout(function () {
-              $('#overlay3').show().addClass('animated fadeIn');}, 50
             );
             setTimeout(function () {
               $('#overlay4').show().addClass('animated fadeIn');}, 50
@@ -92,12 +86,10 @@
         else {
           $('#overlay1').css('opacity', '0');
           $('#overlay2').css('opacity', '0');
-          $('#overlay3').css('opacity', '0');
           $('#overlay4').css('opacity', '0');
           $('#overlay5').css('opacity', '0');
           $('#overlay1').hide();
           $('#overlay2').hide();
-          $('#overlay3').hide();
           $('#overlay4').hide();
           $('#overlay5').hide();
         }
