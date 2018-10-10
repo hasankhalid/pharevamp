@@ -774,7 +774,8 @@ html, body {
 }
 
 .axis text{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 12px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -924,7 +925,7 @@ html, body {
 .month-name {
   font-size: 65%;
   fill: #777;
-  font-family: Montserrat;
+  font-family: 'Work Sans', sans-serif;
 }
 .day.hover {
   stroke: #6d6E70;
@@ -942,7 +943,7 @@ html, body {
 }
 
 .axis.parkCon text{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   text-anchor: start;
 }
 .y.axis.parkCon text{
@@ -955,8 +956,8 @@ html, body {
 }
 
 .legendSize.parkCon text{
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 12px;
 }
 
 .legendSize.parkCon circle{

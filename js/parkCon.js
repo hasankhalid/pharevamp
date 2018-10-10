@@ -157,12 +157,8 @@ function drawParkConChart(data, container){
     let voroPathSel = d3.select(this)
     let selData = voroPathSel.data()[0]
     //console.log(voroPathSel);
-    console.log(selData.data.mean_score);
-    console.log(selData.data.n_locations);
     let zone = voroPathSel.attr('zone');
     let date = voroPathSel.attr('date');
-
-
 
     let selCircle = d3.select('circle.' + zone+ '.' + date);
     let selCircleR = selCircle.attr('r')
@@ -173,7 +169,56 @@ function drawParkConChart(data, container){
               .ease(easeFun)
               .attr('r', selCircleR * radTranScale);
 
-  })
+    d3.select('body').append('div')
+      .classed('animated', true)
+      .classed('fadeInOpac', true)
+      .classed('tool', true)
+      .attr('id', 'hoverbox')
+    // tooltip selection
+    var tooltip = d3.select('.tool');
+
+    tooltip.append('div')
+    .classed('toolhead', true)
+    .append('div')
+    .classed('toolheadData', true)
+    .html(function(){
+      return '<p class="datePara"><span class="dateHead">Date: </span><span class="lato">' + date + '</span></p><span class="dateHead">Zone: </span><span class="lato">' + zone + '</span>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+    });
+
+    d3.select('.toolhead')
+    .append('div')
+    .classed('toolheadIcon', true)
+    .html(function(){
+      return '<i class="fas fa-tree"></i>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+    });
+
+    tooltip.append('div')
+    .classed('sectionHead', true)
+    .html(function(){
+      return '<div class="sectionHeadingContain"><p class="sectionHeading">Park Condition</p><i class="fab fa-pagelines"></i></div><div class="separator"></div>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+    });
+
+    tooltip.append('div')
+    .classed('attendanceValue', true)
+    .html(function(){
+      return '<div class="attendanceValues lato" id="present"><span class="attendanceHead">Locations Surveyed: </span><span>' + selData.data.n_locations + '</span></div>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+    });
+
+    tooltip.append('div')
+    .classed('attendanceValue', true)
+    .html(function(){
+      return '<div style="margin-bottom: 15px" class="attendanceValues lato" id="present"><span class="attendanceHead">Condition Score: </span><span>' + selData.data.mean_score.toPrecision(4) + ' %</span></div>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+    });
+
+    tooltip.style('top', d3.event.pageY - document.getElementById('hoverbox').getBoundingClientRect().height/2 + "px");
+    if (d3.event.pageX < window.innerWidth/2) {
+      tooltip.style('left', d3.event.pageX + 14 + "px");
+    }
+    else {
+      tooltip.style('left', d3.event.pageX - 260 + "px");
+    }
+
+  });
 
   d3.selectAll(".voronoiPath").on("mouseout", function(d, i){
     let voroPathSel = d3.select(this)
@@ -187,6 +232,9 @@ function drawParkConChart(data, container){
             .duration(radTranDur/2)
             .ease(easeFun)
             .attr('r', selCircleR / radTranScale);
+
+    d3.selectAll('.tool').remove();
+
   })
 
   // var linearSize = d3.scaleLinear().domain([0,10]).range([10, 30]);
