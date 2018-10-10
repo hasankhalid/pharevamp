@@ -964,3 +964,14 @@ html, body {
   stroke: black;
   stroke-width: 0.3px;
 }
+
+.conditionGraphContain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.conditionTitle {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

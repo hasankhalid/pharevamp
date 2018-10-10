@@ -38,9 +38,11 @@ function drawParkConChart(data, container){
   var svg_g = d3.select("body")
                   .select(container)
                   .append("svg")
-                  .attr("width", svg_width)
-                  .attr("height", svg_height)
-                  .style('background', 'beige')
+                //  .attr("width", svg_width)
+                //  .attr("height", svg_height)
+                  .attr("preserveAspectRatio", "xMinYMin meet")
+                  .attr("viewBox", "0 0 " + svg_width + " " + svg_height)
+                  .style('background', '#EEEEEE')
                   .append("g")
                   .attr("transform", "translate("+ margins.left + ", "+ margins.top +")");
 
