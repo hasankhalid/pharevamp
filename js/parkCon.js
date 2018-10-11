@@ -192,7 +192,7 @@ function drawParkConChart(data, container){
   // var linearSize = d3.scaleLinear().domain([0,10]).range([10, 30]);
   var maxDom = Math.round(d3.max(radScale.domain()));
   var minDom = Math.round(d3.min(radScale.domain()));
-  var interval = Math.floor((maxDom - minDom)/5);
+  var interval = Math.floor((maxDom - minDom)/3);
 
   console.log(maxDom, minDom, interval);
 
@@ -214,13 +214,13 @@ function drawParkConChart(data, container){
 
   svg.append("g")
     .attr("class", "legendSize parkCon")
-    .attr("transform", "translate(845, 90)");
+    .attr("transform", "translate(845, 65)");
 
   svg.append("text")
     .attr('class', 'legendTitle')
     .attr('x', 825)
-    .attr('y', 75)
-    .text("# Surveys")
+    .attr('y', 50)
+    .text("Locations")
     .style('font-size', '12px')
     .style('font-family', 'Montserrat')
     //.style('transform', 'translateX(-5px)')
@@ -234,6 +234,40 @@ function drawParkConChart(data, container){
 
   svg.select(".legendSize")
     .call(legendSize);
+
+  var legendGrad = svg.append("g").attr('class', 'colorLegend parkCon')
+                    .attr("transform", "translate(840 ,230)")
+                    .append("defs").append("svg:linearGradient")
+                    .attr("id", "gradient").attr("x1", "100%")
+                    .attr("y1", "0%").attr("x2", "100%")
+                    .attr("y2", "100%")
+                    .attr("spreadMethod", "pad");
+
+	var scaleColor =  d3.scalePow()
+											.exponent(Math.E)
+											.domain([100, 0])
+											.range(["Blue", "Red"]);
+
+  for (i = 0; i <= 100; i++) {
+		percentAmount = i + "%";
+		legendGrad.append("stop").attr("offset", percentAmount).attr("stop-color", scaleColor(i)).attr("stop-opacity", 0.5);
+	}
+
+	svg.append("rect").attr("width", 10).attr("height", 110).style("fill", "url(#gradient)").attr("transform", "translate(840,230)");
+
+	var y = d3.scaleLinear().range([110, 0]).domain([100, 0]);
+	var yAxis = d3.axisRight().scale(y).ticks(1);
+
+	svg.select('g.colorLegend').append("g").attr("class", "y axis parkCon").attr("transform", "translate(5,0)").call(yAxis).append("text").attr("transform", "rotate(-90)").attr("y", 30).attr("dy", ".71em").style("text-anchor", "end").text("axis title");
+
+  svg.append("text")
+    .attr('class', 'legendTitle')
+    .attr('x', 825)
+    .attr('y', 210)
+    .text("Score")
+    .style('font-size', '12px')
+    .style('font-family', 'Montserrat')
+    //.style('transform', 'translateX(-5px)')
 
 }
 

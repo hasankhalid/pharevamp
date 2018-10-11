@@ -9,12 +9,14 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script src="./GLSlideshow.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" type="text/css" href="animate.css">
     <link rel="stylesheet" type="text/css" href="./datepicker/datepicker.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
 
     <link rel="icon" href="./resources/favicon.ico" type="image/x-icon" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -101,10 +103,21 @@
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <h3>Project Background</h3>
-            <p class="lato">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p class="lato">On  April 4, 2017, GAT Consulting was awarded the project to monitor the field employees at Parks and Horticulture Authority (PHA), Lahore. The goal of the project was to maximize field staff attendance, to minimize expenditures on inactive employees and to evaluate the general conditions of parks through field surveys. This website will summarize GAT’s monitoring activity between April 2017 and August 2018 through interactive data visualizations.</p>
+            <p class="lato">The goal of the website is to enable GAT monitors to conduct an in-depth analysis on the monitoring data and identify gaps and areas of improvement. The website presents 3 major visualizations presenting over time staff attendance over time, summary of park conditions by zones (administrative divisions devised by PHA) and enumeration activity.</p>
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 exploredata">
             <h3 class="attendanceSec">Explore Attendance</h3>
+            <p class="lato">The visualization that follows summarizes the major attendance statistics over time. The visualization on top shows present and absent rates over time. The monitor can also choose a particular zone or time window to allow for specified/ well defined analysis. </p>
+            <p class="lato">The visualization below on the other hand shows the percentage of various comments (attendances that are neither present or absent are explained through comment by enumerators). The colors of the stacked area chart correspond to the different categories of comments. These categories are listed below: </p>
+            <ul style="list-style-type:none">
+              <li>1. Other (includes Other, Other duty and Driver comments)</li>
+              <li>2. Dormant (Includes Left job, Retired and Death comments)</li>
+              <li>3. Other shifts (Includes night shift, evening shift and transfers comments)</li>
+              <li>4. Leave</li>
+              <li>5. CNIC Mismatch</li>
+            </ul>
+
             <div class="attendanceInputs">
               <div class="dropdownZone">
                 <p class="selectedZone" id="select">Zone I selected</p>
@@ -288,7 +301,6 @@
         var phaZone = phaVal;
         makeChart(phaMasterData, phaZone, [startDate, endDate]);
       });
-
 
 
       $('.reset').click(function() {

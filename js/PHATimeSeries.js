@@ -200,11 +200,19 @@
       chart_g.append('g')
           .attr('class', 'y axis left')
           .call(yAxisLeft)
+          .append("text")
+          .attr('class', 'y axis left label')
+          .text("Present/ Absent Percent")
+          .attr('transform', 'translate(-50,' + height/2 + ') rotate(270)');
 
       chart_g.append('g')
           .attr('class', 'y axis right')
           .attr('transform', 'translate(' + width + ', 0)')
           .call(yAxisRight)
+          .append("text")
+          .attr('class', 'y axis right label')
+          .text("Valid Surveys")
+          .attr('transform', 'translate(50,' + height/2 + ') rotate(270)');
 
       //appending circles for each data point
       chart_g.selectAll('.timeSCirc')
@@ -288,6 +296,10 @@
           .attr('class', 'y axis')
           //.attr('transform', 'translate(0,' + height + ')')
           .call(yAxisLeftArea)
+          .append("text")
+          .attr('class', 'y axis left label')
+          .text("Comments Percent")
+          .attr('transform', 'translate(-50,' + height/2 + ') rotate(270)');
 
       layer.append("path")
           .attr("class", d => "area " + d.key)
@@ -333,6 +345,31 @@
       })
 
       activateMO();
+
+      var categs = stack(phaAreaData).map(d => d.key)
+
+
+      var ordinal = d3.scaleOrdinal(d3.schemeCategory10)
+                      .domain(categs)
+
+
+
+      svgArea.append("g")
+            .attr("class", "legendOrdinal")
+            .attr("transform", "translate(800,20)");
+
+      var legendOrdinal = d3.legendColor()
+        //d3 symbol creates a path-string, for example
+        //"M0,-8.059274488676564L9.306048591020996,
+        //8.059274488676564 -9.306048591020996,8.059274488676564Z"
+        //.shape("path", d3.symbol().size(50)())
+        .shapePadding(1)
+        .shapeWidth(15)
+        .shapeHeight(10)
+        .scale(ordinal);
+
+      svgArea.select(".legendOrdinal")
+        .call(legendOrdinal);
 
   }
 
@@ -402,6 +439,8 @@
       updDataSt = stack(phaAreaData);
       //y.domain([0, maxComm])
     }
+
+    console.log(updDataSt);
 
     //transition in the area charts
 

@@ -440,6 +440,10 @@ html, body {
   }
 }
 
+.legendOrdinal text{
+  font-size: 10px;
+}
+
 
 .grid__item-img {
 	display: block;
@@ -773,6 +777,11 @@ html, body {
   stroke-width: .4;
 }
 
+.y.axis.label {
+  fill: black;
+  text-anchor: middle;
+}
+
 .axis text{
   font-family: 'Montserrat', sans-serif;
 }
@@ -955,6 +964,11 @@ html, body {
 }
 
 .legendSize.parkCon text{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+}
+
+.colorLegend.parkCon .axis.parkCon text{
   font-family: 'Montserrat', sans-serif;
   font-size: 10px;
 }
