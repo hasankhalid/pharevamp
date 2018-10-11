@@ -119,50 +119,57 @@ function drawCalendar(dateData, parentSelection, type){
 
     d3.selectAll(".day").on("mouseover", function(d, i){
       var isZone = $(this).parent().parent().parent().attr('id');
+
+      d3.select('body').append('div')
+        .classed('animated', true)
+        .classed('fadeInOpac', true)
+        .classed('tool', true)
+        .attr('id', 'hoverbox');
+
+      var tooltip = d3.select('.tool');
+
+      tooltip.append('div')
+      .classed('toolhead', true)
+      .append('div')
+      .classed('toolheadData', true)
+      .html(function(){
+        return '<p class="datePara"><span class="dateHead">Day: </span><span class="lato">' + titleFormat(new Date(d)) + '</span></p>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+      });
+
+      d3.select('.toolhead')
+      .append('div')
+      .classed('toolheadIcon', true)
+      .html(function(){
+        return '<i class="fas fa-tree"></i>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+      });
+
       if (lookup[d]) {
-        d3.select('body').append('div')
-          .classed('animated', true)
-          .classed('fadeInOpac', true)
-          .classed('tool', true)
-          .attr('id', 'hoverbox');
-
-        var tooltip = d3.select('.tool');
-
-        tooltip.append('div')
-        .classed('toolhead', true)
-        .append('div')
-        .classed('toolheadData', true)
-        .html(function(){
-          return '<p class="datePara"><span class="dateHead">Day: </span><span class="lato">' + titleFormat(new Date(d)) + '</span></p>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
-        });
-
-        d3.select('.toolhead')
-        .append('div')
-        .classed('toolheadIcon', true)
-        .html(function(){
-          return '<i class="fas fa-tree"></i>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
-        });
-
         tooltip.append('div')
         .classed('sectionHead', true)
         .html(function(){
           return '<div class="sectionHeadingContain"><p class="sectionHeading">Acitivty Summary</p><i class="fas fa-info-circle"></i></div><div class="separator"></div>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
         });
 
-
         tooltip.append('div')
         .classed('attendanceValue', true)
         .html(function(){
           return isZone === "calendar" ? '<div class="attendanceValues lato" id="present"><span style="margin-bottom: 15px" class="attendanceHead">Activity Count: </span><span>' + lookup[d].count + '</span></div>' : '<div class="attendanceValues lato" id="present"><span class="attendanceHead">Zone: </span><span>' + lookup[d].zone + '</span></div><div class="attendanceValues lato" id="present"><span style="margin-bottom: 15px" class="attendanceHead">Activity Count: </span><span>'+ lookup[d].count + '</span></div>'
         });
+      }
+      else {
+        tooltip.append('div')
+        .classed('sectionHead', true)
+        .html(function(){
+          return '<div class="sectionHeadingContain"><p class="sectionHeading">No Activity</p></div>' //+ ' vs ' + d.results[1].party + " ("+d.PrimaryDistrict+ " "+ d.seat +")";
+        });
+      }
 
-        tooltip.style('top', d3.event.pageY - document.getElementById('hoverbox').getBoundingClientRect().height/2 + "px");
-        if (d3.event.pageX < window.innerWidth/2) {
-          tooltip.style('left', d3.event.pageX + 14 + "px");
-        }
-        else {
-          tooltip.style('left', d3.event.pageX - 260 + "px");
-        }
+      tooltip.style('top', d3.event.pageY - document.getElementById('hoverbox').getBoundingClientRect().height/2 + "px");
+      if (d3.event.pageX < window.innerWidth/2) {
+        tooltip.style('left', d3.event.pageX + 14 + "px");
+      }
+      else {
+        tooltip.style('left', d3.event.pageX - 260 + "px");
       }
     });
 
