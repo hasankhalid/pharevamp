@@ -1,6 +1,12 @@
 // transform data function before putting it into drawCalendar function
 function transformData(data, enumName, action, shift){
-  var surveySumFilt = data.filter(d => (d.full_name == enumName  & d.action == action & d.Shift == shift ))
+  var surveySumFilt
+  if (shift != "All"){
+    surveySumFilt = data.filter(d => (d.full_name == enumName  & d.action == action & d.Shift == shift ))
+  }
+  else {
+    surveySumFilt = data.filter(d => (d.full_name == enumName  & d.action == action));
+  }
 
   var dateCount = surveySumFilt.map(d => {
     return {
@@ -11,6 +17,11 @@ function transformData(data, enumName, action, shift){
   })
 
   dateCount = dateCount.filter(d => d.count != 0);
+  dateCount = dateCount.sort(function(a, b){
+    if(a.zone < b.zone) return -1;
+    if(a.zone > b.zone) return 1;
+    return 0;
+  })
   return dateCount;
 }
 
@@ -23,11 +34,20 @@ var actions = ["attendance","survey" ];
 var shifts = ["Morning","Evening","Night"];
 
 // data to be plotted
+var scaleCategorical = d3.scaleOrdinal(d3.schemeCategory20)
+  .domain(surveySummary.map(d => d.zone).sort(function(a, b){
+    if(a < b) return -1;
+    if(a > b) return 1;
+    return 0;
+  }));
+
 var subsetData = transformData(surveySummary, "Tanveer Ahsan", "attendance", "Morning");
 
 // draw count calander and zone calander
 drawCalendar(subsetData, "#calendar", "count");
 drawCalendar(subsetData, "#calendar_with_zones", "zone");
+
+drawLegend();
 
 function drawCalendar(dateData, parentSelection, type){
   // removing all graphical elements that may already be present
@@ -165,8 +185,6 @@ function drawCalendar(dateData, parentSelection, type){
     .domain(d3.extent(dateData, function(d) { return parseInt(d.count); }))
     .range([0.4,1]); // the interpolate used for color expects a number in the range [0,1] but i don't want the lightest part of the color scheme
 
-  var scaleCategorical = d3.scaleOrdinal(d3.schemeCategory20)
-    .domain(dateData.map(d => d.zone));
 
   rect.filter(function(d) { return d in lookup; })
     .transition()
@@ -181,3 +199,31 @@ function drawCalendar(dateData, parentSelection, type){
       }
     });
 }
+
+  function drawLegend() {
+    // draw a legend
+    var legSVG = d3.select("#zone_legend")
+                  .append('svg')
+                  .attr('height', 300)
+                  .attr('width', 800)
+                  .attr('id', 'calendarZoneLegendSVG');
+
+    var scaleforLegend = d3.scaleOrdinal(d3.schemeCategory20)
+      //.domain(subsetData.map(d => d.zone));
+      .domain(["ED", "GIP", "GORs", "I", "II", "III", "IV", "JP", "PD-RR", "PDLBC", "PHAOS", "P-GIP", "V", "VI", "VII"])
+
+    console.log(scaleCategorical.domain());
+
+    legSVG.append("g")
+      .attr("class", "legendOrdinal")
+      .attr("transform", "translate(20,20)");
+
+    var legendOrdinal = d3.legendColor()
+                          .shapeWidth(40)
+                          .shapePadding(1)
+                          .scale(scaleforLegend)
+                          .orient("horizontal");
+
+    legSVG.select(".legendOrdinal")
+      .call(legendOrdinal);
+  }
