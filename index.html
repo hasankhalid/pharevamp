@@ -9,16 +9,23 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script src="./GLSlideshow.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" type="text/css" href="animate.css">
     <link rel="stylesheet" type="text/css" href="./datepicker/datepicker.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
 
     <link rel="icon" href="./resources/favicon.ico" type="image/x-icon" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+    integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+    crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+  crossorigin=""/>
   </head>
 
   <body>
@@ -35,11 +42,9 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 overlayUpHalfMenu" id="overlayUpperHalfMenu">
               <p id="overlay1" class="overlayMenuText home">Attendance</p>
               <p id="overlay2" class="overlayMenuText enum">Enumerator Performance</p>
-              <p id="overlay3" class="overlayMenuText maali">Maali</p>
+              <p id="overlay4" class="overlayMenuText conditions">Park Conditions</p>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 overlayUpHalfMenu" id="overlayBelowHalfMenu">
-              <p id="overlay4" class="overlayMenuText conditions">Park Conditions</p>
-              <p id="overlay5" class="overlayMenuText about">About</p>
             </div>
           </div>
         </div>
@@ -102,15 +107,26 @@
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <h3>Project Background</h3>
-            <p class="lato">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p class="lato">On  April 4, 2017, GAT Consulting was awarded the project to monitor the field employees at Parks and Horticulture Authority (PHA), Lahore. The goal of the project was to maximize field staff attendance, to minimize expenditures on inactive employees and to evaluate the general conditions of parks through field surveys. This website will summarize GAT’s monitoring activity between April 2017 and August 2018 through interactive data visualizations.</p>
+            <p class="lato">The goal of the website is to enable GAT monitors to conduct an in-depth analysis on the monitoring data and identify gaps and areas of improvement. The website presents 3 major visualizations presenting over time staff attendance over time, summary of park conditions by zones (administrative divisions devised by PHA) and enumeration activity.</p>
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 exploredata">
             <h3 class="attendanceSec">Explore Attendance</h3>
+            <p class="lato">The visualization that follows summarizes the major attendance statistics over time. The visualization on top shows present and absent rates over time. The monitor can also choose a particular zone or time window to allow for specified/ well defined analysis. </p>
+            <p class="lato">The visualization below on the other hand shows the percentage of various comments (attendances that are neither present or absent are explained through comment by enumerators). The colors of the stacked area chart correspond to the different categories of comments. These categories are listed below: </p>
+            <ul style="list-style-type:none">
+              <li>1. Other (includes Other, Other duty and Driver comments)</li>
+              <li>2. Dormant (Includes Left job, Retired and Death comments)</li>
+              <li>3. Other shifts (Includes night shift, evening shift and transfers comments)</li>
+              <li>4. Leave</li>
+              <li>5. CNIC Mismatch</li>
+            </ul>
+
             <div class="attendanceInputs">
               <div class="dropdownZone">
                 <p class="selectedZone" id="select">Zone I selected</p>
                 <div class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="btn btn-secondary dropdown-toggle dropdownMenuLinks" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Zone
                   </a>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -131,6 +147,7 @@
                     <a class="dropdown-item" value="PDLBC">PDLBC</a>
                     <a class="dropdown-item" value="Project Gulshan-e-Iqbal Park">Gulshan-e-Iqbal Park</a>
                     <a class="dropdown-item" value="PHA Office Staff">PHA Office Staff</a>
+                    <a class="dropdown-item" value="All">All Zones</a>
                   </div>
                 </div>
               </div>
@@ -157,32 +174,54 @@
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 exploredata">
-            <h3 class="attendanceSec">Weekly Attendance</h3>
-            <div class="bubbleContain">
+            <h3>Weekly Attendance</h3>
+            <div class="weekmap-contain">
+              <div class='map-container'>
+                <div id="map-week"></div>
+                <div id="mapid"></div>
+                <div class ="playback">
+                  <div class="pause-control">
+                    <a id="play"><img src="play.svg"></a>
+                    <a id="pause"><img src="pause.svg"></a>
+                  </div>
+                  <div class="slider-margin">
+                    <div class="slider-area">
+                      <div class="slider-track">
+                        <div class="progress-slider">
+                        </div>
+                        <div class="handle-container">
+                          <div class="handle">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>div>
+          </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 exploredata">
             <h3>Explore PHA Data</h3>
           </div>
-          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 conditions">
             <div id="imgNav1" class="imageNav">
               <img src="./resources/pha3.jpg"></img>
               <div class="colorOverlay"></div>
               <p class="titleOverlay">Park Conditions</p>
             </div>
           </div>
-          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 enum">
             <div id="imgNav2" class="imageNav">
               <img src="./resources/pha4.jpg"></img>
               <div class="colorOverlay"></div>
               <p class="titleOverlay">Enumerator Performance</p>
             </div>
           </div>
-          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 about">
             <div id="imgNav3" class="imageNav">
               <img src="./resources/pha5.jpg"></img>
               <div class="colorOverlay"></div>
-              <p class="titleOverlay">Maali KPI</p>
+              <p class="titleOverlay">About PHA M&E</p>
             </div>
           </div>
         </div>
@@ -209,7 +248,6 @@
            <p class="footerlinks home">Attendance</p>
            <p class="footerlinks enum">Enumerator Performance</p>
            <p class="footerlinks conditions">Park Conditions</p>
-           <p class="footerlinks maali">Maali</p>
            <p class="footerlinks about">About</p>
          </div>
        </div>
@@ -297,7 +335,6 @@
       });
 
 
-
       $('.reset').click(function() {
         var id = $(this).attr("id");
         if (id === "end") {
@@ -338,6 +375,7 @@
       }
       createGLEffect();
     </script>
+    <script src="js/map.js"></script>
 
   </body>
 </html>

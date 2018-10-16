@@ -440,6 +440,10 @@ html, body {
   }
 }
 
+.legendOrdinal text{
+  font-size: 10px;
+}
+
 
 .grid__item-img {
 	display: block;
@@ -529,7 +533,6 @@ html, body {
   background: -webkit-linear-gradient(to top right, #4A00E0, #3F51B5);
   background: linear-gradient(to top right, #4A00E0, #3F51B5 );
 }
-
 
 .bottomButtText {
   z-index: 2;
@@ -659,6 +662,7 @@ html, body {
   width: 100%;
   position: relative;
   margin-top: 15px;
+  cursor: pointer;
 }
 
 .imageNav > img {
@@ -693,7 +697,7 @@ html, body {
   cursor: pointer;
 }
 
-.attendanceInputs {
+.attendanceInputs, .enumInputs {
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
@@ -704,12 +708,22 @@ html, body {
   align-items: flex-end;
 }
 
-#dropdownMenuLink {
+.dropdownMenuLinks {
   width: 125px;
   border-radius: 25px;
   background: #7CB342;
-  color: white;
+  color: white !important;
   border-color: #7CB342;
+  transition: all 0.5s ease-in-out;
+}
+
+.dropdownMenuLinks:hover {
+  background-color: #689F38;
+  border-color: #689F38;
+}
+
+#dropdownMenuLinkEnum {
+  width: 150px;
 }
 
 .gj-datepicker {
@@ -739,7 +753,7 @@ html, body {
     flex-direction: column;
     align-items: center;
   }
-  #dropdownMenuLink {
+  .dropdownMenuLinks {
     margin-bottom: 20px;
   }
   .disclaimerMonthWindow {
@@ -763,13 +777,26 @@ html, body {
   stroke-width: .4;
 }
 
+.y.axis.label {
+  fill: black;
+  text-anchor: middle;
+}
+
 .axis text{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 12px;
 }
 
 @media only screen and (max-width: 767px) {
   .axis text{
     font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 565px) {
+  .enumInputs {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -891,4 +918,176 @@ html, body {
   text-align: center;
   margin-top: 100px;
   width: 100%;
+}
+
+/* style for calander*/
+
+#calendar {
+  margin-top: 30px;
+}
+#calendar_with_zones {
+  margin-top: 30px;
+}
+.month {
+  margin-right: 8px;
+}
+.month-name {
+  font-size: 65%;
+  fill: #777;
+  font-family: 'Work Sans', sans-serif;
+}
+.day.hover {
+  stroke: #6d6E70;
+  stroke-width: 2;
+}
+.day.focus {
+  stroke: #ffff33;
+  stroke-width: 2;
+}
+
+
+/* style for parkCon*/
+.axis.parkCon path,line{
+  stroke: none;
+}
+
+.axis.parkCon text{
+  font-family: 'Work Sans', sans-serif;
+  text-anchor: start;
+}
+.y.axis.parkCon text{
+  font-size: 12px;
+}
+.y.axis.grid.parkCon line{
+  stroke: grey;
+  stroke-width: 0.3px;
+  stroke-opacity: 0.4;
+}
+
+.legendSize.parkCon text{
+  font-family: 'Work Sans', sans-serif;
+  font-size: 12px;
+}
+
+.colorLegend.parkCon .axis.parkCon text{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+}
+
+.legendSize.parkCon circle{
+  fill: none;
+  stroke: black;
+  stroke-width: 0.3px;
+}
+
+.conditionGraphContain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.conditionTitle {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#mapid { height: 450px; }
+
+.map-container {
+  position: relative;
+  z-index: 1;
+}
+
+.map-container input {
+  width: 100%;
+}
+
+.slider-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  cursor: pointer;
+}
+
+.slider-track {
+  width : 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 20px;
+  height: 13px;
+  background-color: #e3e3e7;
+}
+
+.handle {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  background-color: #8f8f8e;
+  position: absolute;
+  left: -50%;
+  transition-timing-function: : ease-out;
+  transition-duration: 0.2s;
+  transition-property: width, height;
+}
+
+.progress-slider {
+width: 0%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: #c0c0c0;
+  transition: width 0.3s ease-out;
+}
+
+.handle-container {
+  display: flex;
+  align-items: center;
+  left: 0%;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  transition: left 0.3s ease-out;
+}
+
+.slider-margin {
+  flex-basis: 95%;
+  margin-left : 20px;
+  margin-right : 20px;
+}
+
+.pause-control {
+  flex-basis: 5%;
+  position: relative;
+  width: 35px;
+  height: 35px;
+  cursor : pointer;
+}
+
+.pause-control a {
+  display: inline-block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.pause-control a img{
+  height: 100%;
+  width: 100%;
+}
+
+.pause-control #play {
+  display: none;
+}
+
+.pause-control #pause {
+  display: none;
+}
+
+.playback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 20px;
 }
