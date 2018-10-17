@@ -33,19 +33,19 @@
 
 	function update() {
 
-		var prevMPP = currMPP; 
+		var prevMPP = currMPP;
 		currMPP = getMetresPerPixel();
 
 		var rescaleFactor = originalMMP/getMetresPerPixel();
 
-		console.log(rescaleFactor);
+		//console.log(rescaleFactor);
 
-		d3.selectAll('.map-container circle').attr("cx", 
-		function(d) { 
+		d3.selectAll('.map-container circle').attr("cx",
+		function(d) {
 			return map.latLngToLayerPoint(d.latLng).x;
 		})
-		.attr("cy", 
-		function(d) { 
+		.attr("cy",
+		function(d) {
 			return map.latLngToLayerPoint(d.latLng).y;
 		})
 		.style('r', function(d){
@@ -58,14 +58,14 @@
 
 	function createBubblesForDay(day,dataArr){
 
-		console.log(day);
+		//console.log(day);
 
 		var _reject;
 
 		var rejectablePromise = new Promise(function(resolve, reject){
 			//set _reject so promise may be externally rejected
 			_reject = reject;
-			
+
 			var data = dataArr[day];
 
 			var hover = document.getElementById('hoverbox');
@@ -85,7 +85,7 @@
 						options : {duration : 300, easing : 'ease-in'}
 					};
 				},
-				featureNodes				
+				featureNodes
 			) //join data using d3 and append circles
 			.then(function(){
 				feature.remove();
@@ -110,13 +110,13 @@
 					d.latLng = point;
 				});
 
-				//set correct circle centers and add listeners 
-				feature.attr("cx", 
-					function(d) { 
+				//set correct circle centers and add listeners
+				feature.attr("cx",
+					function(d) {
 						return d.x;
 					})
-					.attr("cy", 
-					function(d) { 
+					.attr("cy",
+					function(d) {
 						return d.y;
 					})
 					.attr("pointer-events","visible")
@@ -126,7 +126,7 @@
 					})
 					.on('mouseout', function(d){
 						//player.showToolTip();
-						console.log(player.day);
+					//	console.log(player.day);
 						var hover = document.getElementById('hoverbox');
 						if(hover){
 							hover.remove();
@@ -141,7 +141,7 @@
 							{
 								opacity : window.getComputedStyle(this).opacity,
 								r : 0
-							}, 
+							},
 							{
 								opacity : 0.6,
 								r : getRadius(d.data)
@@ -160,7 +160,7 @@
 				}, feature.nodes());
 			})
 			.then(function(){
-				console.log('resolved');
+			//	console.log('resolved');
 				resolve();
 			});
 		});
@@ -250,7 +250,7 @@
 				player.transition('paused');
 				player.animationPromise = createBubblesForDay(player.day, player.data).then(()=>{
 					player.day += 1;
-				});	
+				});
 			}
 		};
 
@@ -359,7 +359,7 @@
 				player.play();
 			},
 			handleDayChange : function(){
-				
+
 			},
 			iterateDays : function(){
 
@@ -376,10 +376,10 @@
 				player.transition('paused');
 				player.ctPromise = createBubblesForDay(player.day, player.data).then(()=>{
 					player.day += 1;
-				});	
+				});
 			},
 			handleDayChange : function(){
-				
+
 			}
 		};
 
@@ -443,11 +443,11 @@
 			circles.push(c);
 		}
 
-		return circles;			
+		return circles;
 	}
 
 	function getRandomRadius(){
-		return Math.round(Math.random() * 60);	
+		return Math.round(Math.random() * 60);
 	}
 
 	var circleCenters = {
@@ -475,11 +475,11 @@
 		if(Array.isArray(circleCenter)){
 			circleCenter = circleCenter[Math.floor(Math.random() * circleCenter.length)];
 		}
-		
+
 		try{
 			circleCenter = circleCenter.split(',');
 		}catch(e){
-			console.log(zone);
+		//	console.log(zone);
 		}
 		var lat = parseFloat(circleCenter[0]) + (Math.random()> 0.5 ? Math.random() * 0.005: Math.random() * 0.005 * -1);
 		var lng = parseFloat(circleCenter[1] + (Math.random()> 0.5 ? Math.random() * 0.005: Math.random() * 0.005 * -1));
@@ -534,7 +534,7 @@
 		var rescaleFactor = originalMMP/getMetresPerPixel();
 		return scale(row['Surveyed'] - row['Awaiting']) * rescaleFactor//scale(row['Surveyed'] - row['Awaiting']);
 	}
-	
+
 	var player;
 
 	d3.csv("avg_gps_data.csv", function(data) {
@@ -561,10 +561,10 @@
 	});
 
 	function getCenterFromDegrees(data)
-	{       
+	{
 	    if (!(data.length > 0)){
 	        return false;
-	    } 
+	    }
 
 	    var num_coords = data.length;
 
@@ -647,7 +647,7 @@
 	}
 
 	function xyToLatLng(x,y) {
-	 
+
 	  // calculate point in xy space
 	  var pointXY = L.point(x, y);
 
@@ -670,7 +670,7 @@
 	function showTooltip(e,data){
 
 		pauseAllWAAPI(document.querySelectorAll('.map-container circle'));
-		
+
 		if(!document.getElementById('hoverbox')){
 			d3.select('body').append('div')
 	        .classed('animated', true)
@@ -778,7 +778,7 @@
 			position.y = window.scrollY + 10;
 		}
 
-		console.log(position);
+	//	console.log(position);
 		return position;
 	}
 
@@ -810,24 +810,26 @@
 
 	sliderArea.addEventListener('mousedown', handleSliderMouseDown);
 
-	sliderArea.addEventListener('mouseup', handleSliderMouseUp);
+	//sliderArea.addEventListener('mouseup', handleSliderMouseUp);
 
 	function handleSliderMouseDown(e){
 		e.preventDefault();
 		e.stopPropagation();
-		console.log('md');
+		document.addEventListener('mouseup', handleSliderMouseUp);
+	//	console.log('md');
 		var clickPointWidth = e.clientX - this.getBoundingClientRect().left;
 		updateSlider(clickPointWidth);
-		console.log('md', 'handleSliderMouseDown');
+	//	console.log('md', 'handleSliderMouseDown');
 		player.handleDayChange(sliderValue);
 	}
 
 	function handleSliderMouseUp(e){
-		console.log('mu');
+	//	console.log('mu');
 		e.preventDefault();
 		e.stopPropagation();
-		console.log('mu', 'handleSliderMouseUp');
+	//	console.log('mu', 'handleSliderMouseUp');
 		player.finishDayChange(sliderValue);
+		document.removeEventListener('mouseup', handleSliderMouseUp);
 	}
 
 	handle.onmousedown = startDrag;
@@ -850,7 +852,7 @@
 		sliderRect = sliderTrack.getBoundingClientRect();
 		//console.log(player.state.name);
 		//console.log('started day change');
-		console.log('md', 'startDrag');
+		//console.log('md', 'startDrag');
 	}
 
 	function dragHandle(e){
@@ -868,7 +870,7 @@
 		handleContainer.style.left = mousePoint  + 'px';
 		progressSlider.style.width = mousePoint + 'px';
 		//player.startDayChange(sliderValue);
-		console.log('md', 'dragHandle');
+		//console.log('md', 'dragHandle');
 	}
 
 	function dragHandleTouch(e){
@@ -887,7 +889,7 @@
 		handleContainer.style.left = mousePoint  + 'px';
 		progressSlider.style.width = mousePoint + 'px';
 		//player.startDayChange(sliderValue);
-		console.log('md', 'dragHandle');
+		//console.log('md', 'dragHandle');
 	}
 
 	function stopDrag(e){
@@ -913,7 +915,7 @@
 		document.removeEventListener('touchmove',dragHandleTouch);
 		sliderArea.addEventListener('mouseup', handleSliderMouseUp);
 		//console.log('stopped');
-		console.log('mu', 'stopDrag');
+		//console.log('mu', 'stopDrag');
 		player.finishDayChange(sliderValue);
 		//sliderArea.addEventListener('mousedown', handleSliderClick);
 	}
@@ -945,7 +947,7 @@
 		document.removeEventListener('touchmove',dragHandleTouch);
 		sliderArea.addEventListener('mouseup', handleSliderMouseUp);
 		//console.log('stopped');
-		console.log('mu', 'stopDrag');
+		//console.log('mu', 'stopDrag');
 		player.finishDayChange(sliderValue);
 		//sliderArea.addEventListener('mousedown', handleSliderClick);
 	}
@@ -966,7 +968,7 @@
 	function updateSlider(clickPointWidth){
 		var closestValue = getClosestEvenlySpacedWidth(sliderDivs, clickPointWidth);
 		sliderValue = getSliderValue(closestValue);
-		console.log(sliderValue);
+		//console.log(sliderValue);
 		progressSlider.style.width = closestValue + 'px';
 		handleContainer.style.left = closestValue + 'px';
 	}
@@ -1012,7 +1014,7 @@
 			firstFrame = props.keyframes[0];
 			e._animation = e.animate(props.keyframes, props.options);
 		});
-		
+
 		return new Promise(function(resolve){
 
 			elements.forEach(function(e){
@@ -1036,7 +1038,7 @@
 	}
 
 	function pauseAllWAAPI(elements){
-		
+
 		if(!Array.isArray(elements)){
 			elements = [].slice.call(elements);
 		}
@@ -1049,7 +1051,7 @@
 	}
 
 	function resumeAllWAAPI(elements){
-		
+
 		if(!Array.isArray(elements)){
 			elements = [].slice.call(elements);
 		}
@@ -1062,7 +1064,7 @@
 	}
 
 	function cancelAllWAAPI(elements){
-		
+
 		if(!Array.isArray(elements)){
 			elements = [].slice.call(elements);
 		}

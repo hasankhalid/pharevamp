@@ -660,6 +660,7 @@ html, body {
 
 .imageNav {
   width: 100%;
+  height: 275px;
   position: relative;
   margin-top: 15px;
   cursor: pointer;
@@ -668,6 +669,8 @@ html, body {
 .imageNav > img {
   width: 100%;
   border-radius: 10px;
+  height: 275px;
+  object-fit: cover;
 }
 
 .colorOverlay {

@@ -9,7 +9,7 @@
     });
 
     $(".home").click(function() {
-      window.location = './index.html';
+      window.location = './';
     });
 
     $(".maali").click(function() {
@@ -35,6 +35,13 @@
       $( ".colorOverlay" ).css('opacity', 0.5);
     });
 
+    $( ".colorOverlay" ).mouseover(function() {
+      $(this).css('opacity', 0.7);
+    });
+
+    $( ".colorOverlay" ).mouseout(function() {
+      $(this).css('opacity', 0.5);
+    });
 
     /* Hamburger functions below */
 
