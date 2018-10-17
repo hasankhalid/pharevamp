@@ -1,7 +1,8 @@
-
     var isMenuOpen = false;
     var isWhiteIcon;
     var isWhiteIconRest;
+
+    /* redirection functions */
 
     $(".conditions").click(function() {
       window.location = './conditions.html';
@@ -23,7 +24,7 @@
       window.location = './aboutPHA.html';
     });
 
-    $('#startdate').attr('readonly', true);
+    $('#startdate').attr('readonly', true); //Disable manual entry on date picker.
     $('#enddate').attr('readonly', true);
 
     $( ".titleOverlay" ).mouseover(function() {
@@ -35,11 +36,13 @@
     });
 
 
+    /* Hamburger functions below */
+
      $("#hamburger").click(function() {
        isMenuOpen = true;
        isWhiteIcon = false;
        isWhiteIconRest = false;
-       $('html').css("overflow-y", "hidden");
+       $('html').css("overflow-y", "hidden"); //Makes page unscrollable on full navigation menu
        $('.overlayMenu').css("z-index", "4");
        $('#bottomHalfOverlay').removeClass('slideOutLeft');
        $('#topHalfOverlay').removeClass('slideOutRight');
@@ -51,6 +54,8 @@
        );
      });
 
+
+     /* Once the top overlays slide in, the following function will fade in the navigation options in the full nav menu */
 
      $('#topHalfOverlay').on("animationend", function(){
        if (isMenuOpen === true) {
@@ -64,9 +69,6 @@
            setTimeout(function () {
              $('#overlay2').show().addClass('animated fadeInDown');}, 150
            );
-           setTimeout(function () {
-             $('#overlay5').show().addClass('animated fadeInUp');}, 150
-           );
           }
           else if ((isWhiteIcon === true)) {
             setTimeout(function () {
@@ -78,20 +80,15 @@
             setTimeout(function () {
               $('#overlay4').show().addClass('animated fadeIn');}, 50
             );
-            setTimeout(function () {
-              $('#overlay5').show().addClass('animated fadeIn');}, 50
-            );
           }
         }
         else {
-          $('#overlay1').css('opacity', '0');
+          $('#overlay1').css('opacity', '0'); //Change opacity to 0 and hide DOM elements on sliding out an overlay menu.
           $('#overlay2').css('opacity', '0');
           $('#overlay4').css('opacity', '0');
-          $('#overlay5').css('opacity', '0');
           $('#overlay1').hide();
           $('#overlay2').hide();
           $('#overlay4').hide();
-          $('#overlay5').hide();
         }
      });
 

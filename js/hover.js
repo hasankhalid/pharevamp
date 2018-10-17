@@ -1,3 +1,6 @@
+/* Implementation of the hover transition animation on home page in three.js and GSAP */
+
+
 var hoverEffect = function(opts) {
     var vertex = `
         varying vec2 vUv;
