@@ -1,21 +1,24 @@
 // transform data function before putting it into drawCalendar function
 function transformData(data, enumName, action, shift){
   var surveySumFilt
+  // filter based on zone
   if (shift != "All"){
     surveySumFilt = data.filter(d => (d.full_name == enumName  & d.action == action & d.Shift == shift ))
   }
   else {
     surveySumFilt = data.filter(d => (d.full_name == enumName  & d.action == action));
   }
-
+  // transform teh data
   var dateCount = surveySumFilt.map(d => {
     return {
       "day": d.Date,
+
       "count": (action == "attendance") ? +d.countAtt : (+d.countInv + (+d.countCon)),
       "zone": d.zone
     };
   })
 
+  // get rid of zero count entries and sort the zones alphabetically
   dateCount = dateCount.filter(d => d.count != 0);
   dateCount = dateCount.sort(function(a, b){
     if(a.zone < b.zone) return -1;
@@ -26,7 +29,6 @@ function transformData(data, enumName, action, shift){
 }
 
 //List of enumerators actions and shifts
-
 var enumNames = ["Abdul Islam","ABDUL LATIF","AHMAD ALI","ALLAUD DIN SIDDIQUI","Dilawar Hussain",
 "Dilawer Ayoub","JUNAID ASLAM RANA","M SIDDIQUE","M ZULFIQAR","M.ARSHAD","Muhammad Arslan","Muhammad Azhar",
 "Muhammad Hussain","Muhammad Rashid","Muhammad Suleman","Tanveer Ahsan","Tanveer Hussain","Zubair Khan"];
@@ -41,11 +43,12 @@ var scaleCategorical = d3.scaleOrdinal(d3.schemeCategory20)
     return 0;
   }));
 
-var subsetData = transformData(surveySummary, "Tanveer Ahsan", "attendance", "Morning");
-
-// draw count calander and zone calander
-drawCalendar(subsetData, "#calendar", "count");
-drawCalendar(subsetData, "#calendar_with_zones", "zone");
+// Testing the functions
+// var subsetData = transformData(surveySummary, "Tanveer Ahsan", "attendance", "Morning");
+//
+// // draw count calander and zone calander
+// drawCalendar(subsetData, "#calendar", "count");
+// drawCalendar(subsetData, "#calendar_with_zones", "zone");
 
 drawLegend();
 
@@ -59,11 +62,8 @@ function drawCalendar(dateData, parentSelection, type){
   }
 
 
-  // var minDate = d3.min(dateData, function(d) { return new Date(d.day) });
-  // var maxDate = d3.max(dateData, function(d) { return new Date(d.day) });
   var minDate = new Date(2017, 06, 01);
   var maxDate = new Date(2018, 08, 01);
-
 
   var cellMargin = 1,
       cellSize = 15;
@@ -73,7 +73,7 @@ function drawCalendar(dateData, parentSelection, type){
       format = d3.timeFormat("%Y-%m-%d"),
       titleFormat = d3.utcFormat("%a, %d-%b");
       monthName = d3.timeFormat("%b %y"),
-      months= d3.timeMonth.range(d3.timeMonth.floor(minDate), maxDate);
+      months = d3.timeMonth.range(d3.timeMonth.floor(minDate), maxDate);
 
   var svg = d3.select(parentSelection).selectAll("svg")
     .data(months)
@@ -207,30 +207,30 @@ function drawCalendar(dateData, parentSelection, type){
     });
 }
 
-  function drawLegend() {
-    // draw a legend
-    var legSVG = d3.select("#zone_legend")
-                  .append('svg')
-                  .attr('height', 300)
-                  .attr('width', 800)
-                  .attr('id', 'calendarZoneLegendSVG');
+function drawLegend() {
+  // draw a legend
+  var legSVG = d3.select("#zone_legend")
+                .append('svg')
+                .attr('height', 300)
+                .attr('width', 800)
+                .attr('id', 'calendarZoneLegendSVG');
 
-    var scaleforLegend = d3.scaleOrdinal(d3.schemeCategory20)
-      //.domain(subsetData.map(d => d.zone));
-      .domain(["ED", "GIP", "GORs", "I", "II", "III", "IV", "JP", "PD-RR", "PDLBC", "PHAOS", "P-GIP", "V", "VI", "VII"])
+  var scaleforLegend = d3.scaleOrdinal(d3.schemeCategory20)
+    //.domain(subsetData.map(d => d.zone));
+    .domain(["ED", "GIP", "GORs", "I", "II", "III", "IV", "JP", "PD-RR", "PDLBC", "PHAOS", "P-GIP", "V", "VI", "VII"])
 
-    console.log(scaleCategorical.domain());
+  console.log(scaleCategorical.domain());
 
-    legSVG.append("g")
-      .attr("class", "legendOrdinal")
-      .attr("transform", "translate(20,20)");
+  legSVG.append("g")
+    .attr("class", "legendOrdinal")
+    .attr("transform", "translate(20,20)");
 
-    var legendOrdinal = d3.legendColor()
-                          .shapeWidth(40)
-                          .shapePadding(1)
-                          .scale(scaleforLegend)
-                          .orient("horizontal");
+  var legendOrdinal = d3.legendColor()
+                        .shapeWidth(40)
+                        .shapePadding(1)
+                        .scale(scaleforLegend)
+                        .orient("horizontal");
 
-    legSVG.select(".legendOrdinal")
-      .call(legendOrdinal);
-  }
+  legSVG.select(".legendOrdinal")
+    .call(legendOrdinal);
+}
